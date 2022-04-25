@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 public class Tank {
     private int x;
     private int y;
+    private boolean enemy;
 
     public int getX() {
         return x;
@@ -27,10 +28,16 @@ public class Tank {
     }
 
     public Tank(int x, int y, Direction direction) {
+        this(x, y, false, direction);
+    }
+
+    public Tank(int x, int y, boolean enemy, Direction direction) {
         this.x = x;
         this.y = y;
+        this.enemy = enemy;
         this.direction = direction;
     }
+
     void move(){
         if(this.stopped) return;
         switch (direction) {
@@ -60,15 +67,16 @@ public class Tank {
     }
 
     Image getImage(){
+        String prefix = enemy ? "e" : "";
         switch(direction){
-            case UP: return new ImageIcon("images/tankU.gif").getImage();
-            case DOWN: return new ImageIcon("images/tankD.gif").getImage();
-            case LEFT: return new ImageIcon("images/tankL.gif").getImage();
-            case RIGHT: return new ImageIcon("images/tankR.gif").getImage();
-            case UPLEFT: return new ImageIcon("images/tankLU.gif").getImage();
-            case UPRIGHT: return new ImageIcon("images/tankRU.gif").getImage();
-            case DOWNLEFT: return new ImageIcon("images/tankLD.gif").getImage();
-            case DOWNRIGHT: return new ImageIcon("images/tankRD.gif").getImage();
+            case UP: return new ImageIcon("images/"+ prefix + "tankU.gif").getImage();
+            case DOWN: return new ImageIcon("images/"+ prefix + "tankD.gif").getImage();
+            case LEFT: return new ImageIcon("images/"+ prefix + "tankL.gif").getImage();
+            case RIGHT: return new ImageIcon("images/"+ prefix + "tankR.gif").getImage();
+            case UPLEFT: return new ImageIcon("images/"+ prefix + "tankLU.gif").getImage();
+            case UPRIGHT: return new ImageIcon("images/"+ prefix + "tankRU.gif").getImage();
+            case DOWNLEFT: return new ImageIcon("images/"+ prefix + "tankLD.gif").getImage();
+            case DOWNRIGHT: return new ImageIcon("images/"+ prefix + "tankRD.gif").getImage();
         }
         return null;
     }
