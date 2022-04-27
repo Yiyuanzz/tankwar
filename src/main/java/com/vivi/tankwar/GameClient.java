@@ -1,5 +1,7 @@
 package com.vivi.tankwar;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -9,10 +11,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameClient extends JComponent {
+    private static final GameClient INSTANCE = new GameClient();
+    public static GameClient getInstance(){
+        return INSTANCE;
+    }
     private Tank playerTank;
 
     private List<Tank> enemyTanks;
     private List<Wall> walls;
+    public List<Wall> getWalls(){
+        return walls;
+    }
+
+    public List<Tank> getEnemyTanks() {
+        return enemyTanks;
+    }
 
     public GameClient(){
         this.playerTank = new Tank(400, 100, Direction.DOWN);
