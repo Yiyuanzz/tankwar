@@ -1,7 +1,5 @@
 package com.vivi.tankwar;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -69,6 +67,7 @@ public class GameClient extends JComponent {
     }
 
     public static void main(String[] args) {
+
         JFrame frame = new JFrame();
         frame.setTitle("the best tank war!");
         frame.setIconImage(new ImageIcon("images/icon.png").getImage());

@@ -1,8 +1,18 @@
 package com.vivi.tankwar;
 
+
+
+
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Tank {
     private int x;
@@ -116,7 +126,7 @@ public class Tank {
             case KeyEvent.VK_DOWN: down = true; break;
             case KeyEvent.VK_LEFT: left = true; break;
             case KeyEvent.VK_RIGHT: right = true; break;
-            case KeyEvent.VK_CONTROL: fire(); break;
+            case KeyEvent.VK_F: fire(); break;
         }
     }
 
@@ -124,6 +134,17 @@ public class Tank {
         Missile missile = new Missile(x + getImage().getWidth(null)/2 - 6,
                 y + getImage().getHeight(null)/2 - 6, enemy, direction);
         GameClient.getInstance().getMissiles().add(missile);
+        try {
+            FileInputStream fileau = new FileInputStream("audios/shoot.wav");
+            AudioStream as = new AudioStream(fileau);
+            AudioPlayer.player.start(as);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        Media sound  = new Media(new File("audios/shoot.wav").toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//        mediaPlayer.play();
     }
 
     private boolean stopped;
